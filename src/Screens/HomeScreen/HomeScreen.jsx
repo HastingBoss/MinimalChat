@@ -1,14 +1,14 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import ContactSidebar from '../../Components/ContactSidebar/ContactSidebar'
-import { ContactsContext } from '../../Context/ContactsContext'
 
 export default function HomeScreen() {
-    const { contacts } = useContext(ContactsContext)
-
     return (
-        <div>
-            <ContactSidebar contactsState={contacts} />
-
+        <div className='screen'>
+            <ContactSidebar />
+            <div className='chat-container' style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <h1>Bienvenido a MinimalChat</h1>
+                <p>Selecciona un contacto para comenzar</p>
+            </div>
         </div>
     )
 }
