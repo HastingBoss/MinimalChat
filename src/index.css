@@ -161,3 +161,73 @@ hr {
     /* Blue for work hours info */
     font-weight: 500;
 }
+
+/* Chat Input Area */
+.chat-input-container {
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 1rem;
+}
+
+.chat-input {
+    flex: 1;
+    background-color: #2c2c2c;
+    border: 1px solid #444;
+    border-radius: 20px;
+    padding: 10px 15px;
+    color: var(--text-color);
+    outline: none;
+    font-family: inherit;
+}
+
+.chat-input:focus {
+    border-color: #666;
+}
+
+.send-button {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: background-color 0.2s;
+}
+
+.send-button:hover {
+    background-color: #357abd;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 60px;
+        padding: 1rem 0.5rem;
+    }
+
+    .contact-info,
+    .sidebar h2 {
+        display: none;
+    }
+
+    .contact-item {
+        justify-content: center;
+        padding: 5px;
+    }
+
+    .contact-item img {
+        margin: 0;
+        width: 40px;
+        height: 40px;
+    }
+
+    .sidebar hr {
+        margin: 5px 0;
+    }
+}

@@ -12,7 +12,8 @@ export default function ContactsProvider({ children }) {
     const [contacts, setContacts] = useState(getContacts())
 
     const provider_values = {
-        contacts: contacts
+        contacts: contacts,
+        setContacts: setContacts
     }
 
     return (

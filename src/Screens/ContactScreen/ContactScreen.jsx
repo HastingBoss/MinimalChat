@@ -1,13 +1,42 @@
 import React from 'react'
 import { useParams } from 'react-router'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { ContactsContext } from '../../Context/ContactsContext'
 import ContactSidebar from '../../Components/ContactSidebar/ContactSidebar'
 
 export default function ContactScreen() {
-    const { contacts } = useContext(ContactsContext)
+    const { contacts, setContacts } = useContext(ContactsContext)
     const { contact_id } = useParams()
+    const [messageText, setMessageText] = useState('')
+
     const contact_selected = contacts.find(contact => contact.id === Number(contact_id))
+
+    const handleSendMessage = (e) => {
+        e.preventDefault()
+        if (!messageText.trim()) return
+
+        const newMessage = {
+            id: Date.now(),
+            send_by_me: true,
+            message: messageText,
+            created_at: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            is_read: false
+        }
+
+        const updatedContacts = contacts.map(contact => {
+            if (contact.id === Number(contact_id)) {
+                return {
+                    ...contact,
+                    messages: [...contact.messages, newMessage]
+                }
+            }
+            return contact
+        })
+
+        setContacts(updatedContacts)
+        setMessageText('')
+    }
+
     return (
         <div className='screen'>
             <ContactSidebar />
@@ -39,6 +68,18 @@ export default function ContactScreen() {
                             </div>
                         ))}
                     </div>
+                    <form className='chat-input-container' onSubmit={handleSendMessage}>
+                        <input
+                            type='text'
+                            className='chat-input'
+                            placeholder='Escribe un mensaje...'
+                            value={messageText}
+                            onChange={(e) => setMessageText(e.target.value)}
+                        />
+                        <button type='submit' className='send-button'>
+                            ➤
+                        </button>
+                    </form>
                 </div>
             )}
         </div>
