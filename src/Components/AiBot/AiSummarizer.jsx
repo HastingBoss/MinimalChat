@@ -75,7 +75,7 @@ export default function AiSummarizer({ messages, contactName, onClose }) {
                     {isLoading ? (
                         <div className="ai-loading-container">
                             <div className="ai-spinner"></div>
-                            <p>Analizando la conversación con Gemini 2.0...</p>
+                            <p>Analizando la conversación con Gemini 2.5...</p>
                         </div>
                     ) : error ? (
                         <div className="ai-error-container" style={{ color: '#ef4444', textAlign: 'center' }}>
