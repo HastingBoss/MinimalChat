@@ -5,7 +5,7 @@ import { useNotification } from '../../Context/NotificationContext'
 import AiSummarizer from '../AiBot/AiSummarizer'
 import './ContactSidebar.css'
 
-export default function ContactSidebar() {
+export default function ContactSidebar({ onClose }) {
     const { contacts, channels, addContact, deleteContact } = useContext(ContactsContext)
     const { showNotification } = useNotification()
     const [searchParams, setSearchParams] = useSearchParams()
@@ -128,6 +128,10 @@ export default function ContactSidebar() {
             )}
 
             <div className='sidebar-top'>
+                <div className="mobile-sidebar-header">
+                    <h3>Contactos</h3>
+                    <i className="bi bi-x-lg close-sidebar-icon" onClick={onClose}></i>
+                </div>
                 <div
                     className='logo-section'
                     onClick={() => navigate('/')}

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNotification } from '../../Context/NotificationContext'
 import './RightPanel.css'
 
-export default function RightPanel({ contact }) {
+export default function RightPanel({ contact, onClose }) {
     const { showNotification } = useNotification()
     const [isMemberListOpen, setIsMemberListOpen] = useState(false)
     const [isProfileModalOpen, setIsProfileModalOpen] = useState(false)
@@ -14,6 +14,11 @@ export default function RightPanel({ contact }) {
 
     return (
         <div className='right-panel'>
+            {/* Botón de cerrar para móvil */}
+            <div className="mobile-panel-header">
+                <h3>Información</h3>
+                <i className="bi bi-x-lg close-panel-icon" onClick={onClose}></i>
+            </div>
             {/* Modal de Lista de Miembros Estilo Sidebar */}
             {isMemberListOpen && (
                 <div className="custom-modal-overlay" onClick={() => setIsMemberListOpen(false)}>

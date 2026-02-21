@@ -142,7 +142,7 @@ export default function ContactScreen() {
             )}
 
             <div className={`sidebar-wrapper ${isLeftSidebarOpen ? 'open' : ''}`}>
-                <ContactSidebar />
+                <ContactSidebar onClose={() => setIsLeftSidebarOpen(false)} />
             </div>
 
             {!contact_selected ? (
@@ -185,7 +185,10 @@ export default function ContactScreen() {
                         />
                     </div>
                     <div className={`right-panel-wrapper ${isRightSidebarOpen ? 'open' : ''}`}>
-                        <RightPanel contact={contact_selected} />
+                        <RightPanel
+                            contact={contact_selected}
+                            onClose={() => setIsRightSidebarOpen(false)}
+                        />
                     </div>
                 </>
             )}

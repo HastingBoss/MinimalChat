@@ -22,7 +22,7 @@ export default function HomeScreen() {
             ></i>
 
             <div className={`sidebar-wrapper ${isLeftSidebarOpen ? 'open' : ''}`}>
-                <ContactSidebar />
+                <ContactSidebar onClose={() => setIsLeftSidebarOpen(false)} />
             </div>
 
             <div className='chat-container home-container'>

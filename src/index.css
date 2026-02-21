@@ -546,16 +546,55 @@ body {
         height: 100%;
         transform: translateX(100%);
         width: 300px;
+        background: white;
     }
 
     .right-panel-wrapper.open {
         transform: translateX(0);
-        box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+    }
+
+    .right-panel {
+        height: 100% !important;
+        border-left: none;
     }
 
     .desktop-only {
         display: block !important;
         cursor: pointer;
+    }
+
+    /* Estilo para las cabeceras móviles de los sidebars */
+    .mobile-sidebar-header,
+    .mobile-panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 20px;
+        background: #f8fafc;
+        border-bottom: 1px solid #e2e8f0;
+        margin: -20px -20px 20px -20px;
+    }
+
+    /* Reajuste para RightPanel que tiene padding 24px */
+    .mobile-panel-header {
+        margin: -24px -24px 24px -24px;
+        padding: 16px 24px;
+    }
+
+    .mobile-sidebar-header h3,
+    .mobile-panel-header h3 {
+        font-size: 1rem;
+        font-weight: 700;
+        margin: 0;
+        color: var(--accent-primary);
+    }
+
+    .close-sidebar-icon,
+    .close-panel-icon {
+        font-size: 1.2rem;
+        cursor: pointer;
+        color: var(--text-muted);
     }
 }
 
@@ -568,6 +607,12 @@ body {
         height: 100%;
         transform: translateX(-100%);
         width: 280px;
+        background: white;
+    }
+
+    .sidebar {
+        height: 100% !important;
+        width: 100% !important;
     }
 
     .sidebar-wrapper.open {
@@ -649,7 +694,9 @@ body {
 }
 
 /* Header Adjustments */
-.mobile-nav-toggle {
+.mobile-nav-toggle,
+.mobile-sidebar-header,
+.mobile-panel-header {
     display: none;
 }
 
