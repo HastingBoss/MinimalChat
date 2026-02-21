@@ -1,4 +1,3 @@
-
 // Importaciones principales
 import { createRoot } from 'react-dom/client'
 import 'bootstrap-icons/font/bootstrap-icons.css'

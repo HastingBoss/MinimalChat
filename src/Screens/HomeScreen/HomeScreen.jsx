@@ -1,13 +1,21 @@
 import React from 'react'
 import ContactSidebar from '../../Components/ContactSidebar/ContactSidebar'
+import './HomeScreen.css'
 
 export default function HomeScreen() {
     return (
         <div className='screen'>
             <ContactSidebar />
-            <div className='chat-container' style={{ justifyContent: 'center', alignItems: 'center' }}>
-                <h1>Bienvenido a MinimalChat</h1>
-                <p>Selecciona un contacto para comenzar</p>
+            <div className='chat-container home-container'>
+                <div className='home-content'>
+                    <div className='home-logo-box'>
+                        <i className="bi bi-stack"></i>
+                    </div>
+                    <h1 className='home-title'>Bienvenido a MinimalChat</h1>
+                    <p className='home-text'>
+                        Selecciona un canal del panel lateral para unirte a las discusiones, o inicia un mensaje directo con tus compañeros de equipo.
+                    </p>
+                </div>
             </div>
         </div>
     )

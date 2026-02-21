@@ -1,6 +1,9 @@
-import { contacts } from '../data/contactData'
+import { contacts, channels } from '../data/contactData'
 
-// Función simula una petición a una API para obtener los contactos
 export function getContacts() {
     return contacts
+}
+
+export function getChannels() {
+    return channels
 }

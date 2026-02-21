@@ -1,31 +1,51 @@
-import React from 'react'
-import { Link } from 'react-router' // not needed here
+import React, { useState } from 'react'
+import { useNotification } from '../../Context/NotificationContext'
+import './ChatHeader.css'
 
-export default function ChatHeader({ contact, onCall, error }) {
+export default function ChatHeader({ contact, onCall, searchTerm, onSearchChange }) {
+    const { showNotification } = useNotification()
+    const [isSearching, setIsSearching] = useState(false)
+
     if (!contact) return null
+
+    const handleInfoClick = () => {
+        const msgCount = contact.messages?.length || 0
+        const filesCount = contact.messages?.filter(m => m.message.includes('fig') || m.message.includes('pdf')).length || 0
+        showNotification(`Info del chat: ${msgCount} mensajes, ${filesCount} archivos compartidos`, 'info')
+    }
 
     return (
         <div className='chat-header'>
-            {/* Mensaje de error de horario flotante */}
-            {error && (
-                <div style={{ position: 'absolute', top: '80px', right: '20px', zIndex: 50 }} className='check-status-message'>
-                    {error}
-                </div>
-            )}
-
-            <img src={contact.profile_picture} alt={contact.name} />
-            <div className='chat-header-info'>
-                <h2>{contact.name}</h2>
-                <p className='job-title'>{contact.job_title}</p>
-                <div className='status-info'>
-                    <span className='connection'>Últ. con.: {contact.last_time_connection}</span>
-                    <span className='work-hours'>• Horario: {contact.work_hours}</span>
-                </div>
+            <div className='chat-header-left'>
+                <h2>
+                    {contact.type === 'channel' ? <i className="bi bi-hash"></i> : <i className="bi bi-person"></i>}
+                    {contact.type === 'channel' ? contact.name : contact.name.toLowerCase().replace(' ', '-')}
+                    <span className='team-tag'>Team</span>
+                </h2>
+                <p className='chat-header-description'>
+                    {contact.description || contact.job_title || 'Sin descripción disponible para este chat.'}
+                </p>
             </div>
-            {/* Botón para iniciar llamada */}
-            <button className='call-button' onClick={onCall} title="Llamar">
-                <i className="bi bi-telephone-fill"></i>
-            </button>
+
+            <div className='chat-header-right'>
+                <div className={`search-container ${isSearching ? 'active' : ''}`}>
+                    <i className="bi bi-search header-icon" onClick={() => setIsSearching(!isSearching)} title="Buscar en la conversación"></i>
+                    {isSearching && (
+                        <input
+                            type="text"
+                            placeholder="Buscar mensajes..."
+                            value={searchTerm}
+                            onChange={(e) => onSearchChange(e.target.value)}
+                            autoFocus
+                            onBlur={() => !searchTerm && setIsSearching(false)}
+                            className="header-search-input"
+                        />
+                    )}
+                </div>
+
+                <i className="bi bi-telephone header-icon" onClick={onCall} title="Iniciar llamada de voz"></i>
+                <i className="bi bi-info-circle header-icon" onClick={handleInfoClick} title="Ver estadísticas del chat"></i>
+            </div>
         </div>
     )
 }

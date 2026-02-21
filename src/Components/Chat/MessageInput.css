@@ -1,0 +1,13 @@
+.input-toolbar i,
+.input-actions-left i {
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 4px;
+}
+
+.input-toolbar i:hover,
+.input-actions-left i:hover {
+    color: var(--accent-primary);
+    background-color: rgba(79, 70, 229, 0.1);
+    border-radius: 4px;
+}

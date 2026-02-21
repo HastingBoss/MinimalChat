@@ -1,0 +1,220 @@
+.custom-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    backdrop-filter: blur(4px);
+}
+
+.custom-modal {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    width: 320px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.profile-modal {
+    background: white;
+    width: 340px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.profile-header {
+    height: 140px;
+    background: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 20px;
+}
+
+.profile-header img {
+    width: 90px;
+    height: 90px;
+    border-radius: 24px;
+    border: 4px solid white;
+    background: white;
+    position: absolute;
+    bottom: -45px;
+}
+
+.profile-header .close-icon {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    color: white;
+    cursor: pointer;
+}
+
+.profile-body {
+    padding: 60px 24px 24px;
+    text-align: center;
+}
+
+.profile-body h2 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.profile-body .job-title {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin: 4px 0 20px;
+}
+
+.profile-info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+    text-align: left;
+    background: #f8fafc;
+    padding: 16px;
+    border-radius: 12px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.info-item .label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+}
+
+.info-item .value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #334155;
+}
+
+.status-online {
+    color: #10b981 !important;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.status-online i {
+    font-size: 0.5rem;
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 10px;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nav-item-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.nav-item-container:hover {
+    background-color: #f1f5f9;
+}
+
+.nav-item-container:hover .action-dots {
+    opacity: 1;
+}
+
+.contact-nav-item {
+    flex: 1;
+    border-radius: 8px;
+}
+
+.action-dots {
+    padding: 8px;
+    cursor: pointer;
+    color: #94a3b8;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.contact-context-menu {
+    position: absolute;
+    right: 8px;
+    top: 38px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 6px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    min-width: 140px;
+}
+
+.menu-item {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #475569;
+}
+
+.menu-item:hover {
+    background: #f8fafc;
+    color: #4f46e5;
+}
+
+.menu-item.delete:hover {
+    background: #fee2e2;
+    color: #ef4444;
+}
+
+.custom-modal h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+}
+
+.custom-modal input {
+    width: 100%;
+    padding: 10px;
+    margin: 16px 0;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    outline: none;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.modal-actions button {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.modal-actions button.primary {
+    background: #4f46e5;
+    color: white;
+}
