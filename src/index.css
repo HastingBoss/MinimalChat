@@ -520,7 +520,7 @@ body {
 }
 
 /* Ocultar icono de info por defecto en escritorio */
-.desktop-only {
+.info-mobile-toggle {
     display: none !important;
 }
 
@@ -559,7 +559,7 @@ body {
         border-left: none;
     }
 
-    .desktop-only {
+    .info-mobile-toggle {
         display: block !important;
         cursor: pointer;
     }

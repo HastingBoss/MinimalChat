@@ -45,8 +45,7 @@ export default function ChatHeader({ contact, onCall, searchTerm, onSearchChange
                 </div>
 
                 <i className="bi bi-telephone header-icon" onClick={onCall} title="Iniciar llamada de voz"></i>
-                <i className="bi bi-layout-sidebar-reverse mobile-nav-toggle right" onClick={onToggleRight} title="Ver detalles del perfil"></i>
-                <i className="bi bi-info-circle header-icon desktop-only" onClick={onToggleRight} title="Ver detalles del perfil"></i>
+                <i className="bi bi-info-circle header-icon info-mobile-toggle" onClick={onToggleRight} title="Ver detalles del perfil"></i>
             </div>
         </div>
     )
