@@ -4,11 +4,20 @@
 MinimalChat es una aplicación de mensajería simplificada diseñada para cumplir con los requisitos del Trabajo Práctico de React. El desafío consistió en crear una interfaz de chat funcional, responsiva y accesible, permitiendo la comunicación simulada con diferentes contactos. Se puso especial énfasis en la gestión de estados globales, el enrutamiento dinámico y la adaptabilidad a dispositivos móviles.
 
 ## ✨ Innovación e Inteligencia Artificial
-Este proyecto destaca por la integración de tecnologías de vanguardia para mejorar la experiencia del usuario:
+Este proyecto se destaca por la integración de tecnologías de IA para optimizar tanto el desarrollo como la experiencia final:
 
-- **Diseño con UX Pilot**: La interfaz visual fue conceptualizada y refinada utilizando **UX Pilot**, permitiendo una estética moderna de *glassmorphism* y una jerarquía visual clara.
-- **Resumen Inteligente (Gemini 2.5)**: Se integró el modelo **Gemini 2.5 Flash** de Google para permitir el resumen automático de conversaciones. Esta funcionalidad fue implementada con el apoyo estratégico del **chatbot de Gemini** para la optimización de prompts y manejo de cuotas.
-- **Desarrollo con Antigravity**: El flujo de trabajo, la refactorización de estilos y la resolución de bugs complejos fueron realizados con la asistencia de **Antigravity**, permitiendo una evolución rápida de una base de código inline a una arquitectura modular y escalable.
+- **Diseño con UX Pilot**: La estructura visual y la paleta de colores *glassmorphism* fueron conceptualizadas inicialmente con **UX Pilot**, garantizando una interfaz equilibrada y moderna.
+- **Resumen Inteligente (Gemini 2.5 Flash)**: Integración del SDK de Google para generar resúmenes automáticos. Este proceso fue optimizado con la asistencia del chatbot **Gemini** para la ingeniería de prompts y el manejo efectivo de cuotas de API.
+- **Desarrollo con Antigravity**: La refactorización modular, la gestión de estados globales complejos y la resolución de bugs críticos (como el escalado en móviles) se realizaron con el apoyo de **Antigravity**, permitiendo transformar una base de código simple en una arquitectura robusta.
+
+## 📊 Estadísticas del Proyecto
+Datos actualizados según el historial de desarrollo:
+
+- **Total de Commits**: 13
+- **Tiempo de Desarrollo**: ~8 horas efectivas de programación.
+- **Interacciones con IA**: +65 prompts estratégicos para diseño y lógica.
+- **Archivos Desarrollados**: 23 archivos (Componentes, Contexts, Hooks y Servicios).
+- **Cobertura Visual**: 100% Responsivo (Mobile First).
 
 ## 🚀 Funcionalidades Principales
 - **Chat en tiempo real (simulado)**: Envío y recepción de mensajes con soporte para Markdown.
