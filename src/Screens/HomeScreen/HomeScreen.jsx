@@ -3,9 +3,28 @@ import ContactSidebar from '../../Components/ContactSidebar/ContactSidebar'
 import './HomeScreen.css'
 
 export default function HomeScreen() {
+    const [isLeftSidebarOpen, setIsLeftSidebarOpen] = React.useState(false)
+
     return (
-        <div className='screen'>
-            <ContactSidebar />
+        <div className={`screen ${isLeftSidebarOpen ? 'left-open' : ''}`}>
+            {/* Overlays para cerrar sidebars en móvil */}
+            {isLeftSidebarOpen && (
+                <div
+                    className="mobile-overlay"
+                    onClick={() => setIsLeftSidebarOpen(false)}
+                ></div>
+            )}
+
+            <i
+                className="bi bi-list mobile-home-toggle"
+                onClick={() => setIsLeftSidebarOpen(true)}
+                title="Abrir menú"
+            ></i>
+
+            <div className={`sidebar-wrapper ${isLeftSidebarOpen ? 'open' : ''}`}>
+                <ContactSidebar />
+            </div>
+
             <div className='chat-container home-container'>
                 <div className='home-content'>
                     <div className='home-logo-box'>

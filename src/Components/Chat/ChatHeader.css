@@ -93,8 +93,22 @@
     }
 
     to {
-        width: 150px;
+        width: 120px;
         opacity: 1;
+    }
+}
+
+@media (max-width: 320px) {
+    .chat-header-left h2 {
+        font-size: 0.8rem;
+    }
+
+    .header-search-input {
+        width: 100px;
+    }
+
+    .team-tag {
+        display: none;
     }
 }
 

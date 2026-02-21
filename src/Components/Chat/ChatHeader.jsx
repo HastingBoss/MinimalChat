@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNotification } from '../../Context/NotificationContext'
 import './ChatHeader.css'
 
-export default function ChatHeader({ contact, onCall, searchTerm, onSearchChange }) {
+export default function ChatHeader({ contact, onCall, searchTerm, onSearchChange, onToggleLeft, onToggleRight }) {
     const { showNotification } = useNotification()
     const [isSearching, setIsSearching] = useState(false)
 
@@ -17,6 +17,7 @@ export default function ChatHeader({ contact, onCall, searchTerm, onSearchChange
     return (
         <div className='chat-header'>
             <div className='chat-header-left'>
+                <i className="bi bi-list mobile-nav-toggle" onClick={onToggleLeft} title="Menú de contactos"></i>
                 <h2>
                     {contact.type === 'channel' ? <i className="bi bi-hash"></i> : <i className="bi bi-person"></i>}
                     {contact.type === 'channel' ? contact.name : contact.name.toLowerCase().replace(' ', '-')}
@@ -44,7 +45,8 @@ export default function ChatHeader({ contact, onCall, searchTerm, onSearchChange
                 </div>
 
                 <i className="bi bi-telephone header-icon" onClick={onCall} title="Iniciar llamada de voz"></i>
-                <i className="bi bi-info-circle header-icon" onClick={handleInfoClick} title="Ver estadísticas del chat"></i>
+                <i className="bi bi-layout-sidebar-reverse mobile-nav-toggle right" onClick={onToggleRight} title="Ver detalles del perfil"></i>
+                <i className="bi bi-info-circle header-icon desktop-only" onClick={handleInfoClick} title="Ver estadísticas del chat"></i>
             </div>
         </div>
     )

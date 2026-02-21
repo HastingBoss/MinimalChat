@@ -23,6 +23,16 @@ export default function ContactScreen() {
     const [isCalling, setIsCalling] = useState(false)
     const [searchTerm, setSearchTerm] = useState('')
 
+    // Estados para sidebars responsivos
+    const [isLeftSidebarOpen, setIsLeftSidebarOpen] = useState(false)
+    const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false)
+
+    // Cerrar sidebars al cambiar de contacto (especialmente en móvil)
+    useEffect(() => {
+        setIsLeftSidebarOpen(false)
+        setIsRightSidebarOpen(false)
+    }, [contact_id])
+
     // Identificar si el chat seleccionado es un contacto directo o un canal
     const contact_selected = contacts.find(contact => String(contact.id) === contact_id) ||
         channels.find(channel => String(channel.id) === contact_id)
@@ -119,8 +129,21 @@ export default function ContactScreen() {
     }
 
     return (
-        <div className='screen'>
-            <ContactSidebar />
+        <div className={`screen ${isLeftSidebarOpen ? 'left-open' : ''} ${isRightSidebarOpen ? 'right-open' : ''}`}>
+            {/* Overlays para cerrar sidebars en móvil */}
+            {(isLeftSidebarOpen || isRightSidebarOpen) && (
+                <div
+                    className="mobile-overlay"
+                    onClick={() => {
+                        setIsLeftSidebarOpen(false)
+                        setIsRightSidebarOpen(false)
+                    }}
+                ></div>
+            )}
+
+            <div className={`sidebar-wrapper ${isLeftSidebarOpen ? 'open' : ''}`}>
+                <ContactSidebar />
+            </div>
 
             {!contact_selected ? (
                 <div className='chat-container' style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -143,6 +166,8 @@ export default function ContactScreen() {
                             onCall={handleStartCall}
                             searchTerm={searchTerm}
                             onSearchChange={setSearchTerm}
+                            onToggleLeft={() => setIsLeftSidebarOpen(!isLeftSidebarOpen)}
+                            onToggleRight={() => setIsRightSidebarOpen(!isRightSidebarOpen)}
                         />
 
                         <MessageList
@@ -159,7 +184,9 @@ export default function ContactScreen() {
                             onSubmit={handleSendMessage}
                         />
                     </div>
-                    <RightPanel contact={contact_selected} />
+                    <div className={`right-panel-wrapper ${isRightSidebarOpen ? 'open' : ''}`}>
+                        <RightPanel contact={contact_selected} />
+                    </div>
                 </>
             )}
         </div>

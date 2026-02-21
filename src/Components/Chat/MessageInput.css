@@ -11,3 +11,14 @@
     background-color: rgba(79, 70, 229, 0.1);
     border-radius: 4px;
 }
+
+@media (max-width: 768px) {
+    .input-actions-right span {
+        display: none;
+    }
+
+    .input-toolbar {
+        gap: 8px;
+        overflow-x: auto;
+    }
+}
