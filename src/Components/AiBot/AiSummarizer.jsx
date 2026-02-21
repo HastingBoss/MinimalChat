@@ -8,9 +8,6 @@ export default function AiSummarizer({ messages, contactName, onClose }) {
     const [error, setError] = useState(null)
 
     // Configuración de Gemini
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY
-    const genAI = apiKey ? new GoogleGenerativeAI(apiKey) : null
-
     useEffect(() => {
         if (messages && messages.length > 0) {
             handleSummarize()
@@ -20,11 +17,17 @@ export default function AiSummarizer({ messages, contactName, onClose }) {
     }, [messages])
 
     const handleSummarize = async () => {
-        if (!genAI) {
-            setError("Error: No se encontró la API Key de Gemini. Asegúrate de configurar VITE_GEMINI_API_KEY en tu archivo .env")
+        const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+
+        console.log("Intentando resumir chat...");
+        console.log("API Key detectada:", apiKey ? "SÍ (empieza con " + apiKey.substring(0, 5) + "...)" : "NO");
+
+        if (!apiKey) {
+            setError("Error: No se encontró la API Key de Gemini. Asegúrate de configurar VITE_GEMINI_API_KEY en tu archivo .env y REINICIAR el comando npm run dev.");
             return
         }
 
+        const genAI = new GoogleGenerativeAI(apiKey.trim());
         setIsLoading(true)
         setError(null)
 
