@@ -519,6 +519,11 @@ body {
     z-index: 5000;
 }
 
+/* Ocultar icono de info por defecto en escritorio */
+.desktop-only {
+    display: none !important;
+}
+
 /* Overlay para cerrar menús en móvil */
 .mobile-overlay {
     position: fixed;
@@ -532,6 +537,29 @@ body {
     animation: fadeIn 0.2s ease;
 }
 
+/* Breakpoint para el Panel Derecho (975px) */
+@media (max-width: 975px) {
+    .right-panel-wrapper {
+        position: fixed;
+        right: 0;
+        top: 0;
+        height: 100%;
+        transform: translateX(100%);
+        width: 300px;
+    }
+
+    .right-panel-wrapper.open {
+        transform: translateX(0);
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .desktop-only {
+        display: block !important;
+        cursor: pointer;
+    }
+}
+
+/* Breakpoint para el Sidebar Izquierdo (768px) */
 @media (max-width: 768px) {
     .sidebar-wrapper {
         position: fixed;
@@ -542,17 +570,7 @@ body {
         width: 280px;
     }
 
-    .right-panel-wrapper {
-        position: fixed;
-        right: 0;
-        top: 0;
-        height: 100%;
-        transform: translateX(100%);
-        width: 300px;
-    }
-
-    .sidebar-wrapper.open,
-    .right-panel-wrapper.open {
+    .sidebar-wrapper.open {
         transform: translateX(0);
         box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     }
@@ -590,10 +608,6 @@ body {
         color: var(--accent-primary);
     }
 
-    .desktop-only {
-        display: none !important;
-    }
-
     .mobile-home-toggle {
         position: fixed;
         top: 16px;
@@ -612,6 +626,14 @@ body {
     }
 }
 
+@media (min-width: 976px) {
+    .right-panel-wrapper {
+        transform: none !important;
+        position: static !important;
+        display: block !important;
+    }
+}
+
 @media (min-width: 769px) {
 
     .mobile-nav-toggle,
@@ -619,8 +641,7 @@ body {
         display: none !important;
     }
 
-    .sidebar-wrapper,
-    .right-panel-wrapper {
+    .sidebar-wrapper {
         transform: none !important;
         position: static !important;
         display: block !important;
