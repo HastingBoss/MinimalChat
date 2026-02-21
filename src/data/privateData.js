@@ -7,6 +7,8 @@ export const contacts = [
         work_hours: '24hs',
         availability: 'En línea',
         profile_picture: 'https://randomuser.me/api/portraits/men/1.jpg',
+        bio: 'Especialista en arquitecturas escalables y bases de datos NoSQL. Apasionado por el código limpio y la optimización de procesos.',
+        tenure: '3 años en la empresa',
         messages: [
             { id: 1, send_by_me: true, message: '¿Cómo va la migración?', created_at: '11:45' },
             { id: 2, send_by_me: false, message: 'Casi terminamos con usuarios.', created_at: '11:50' },
@@ -30,6 +32,8 @@ export const contacts = [
         work_hours: '08:30 - 17:30',
         availability: 'En reunión',
         profile_picture: 'https://randomuser.me/api/portraits/women/2.jpg',
+        bio: 'Liderando equipos multidisciplinarios para entregar productos de alta calidad a tiempo. Experta en metodologías Ágiles y Scrum.',
+        tenure: '5 años en la empresa',
         messages: [
             { id: 1, send_by_me: false, message: '¿Revisamos Sprint 4?', created_at: '09:10' },
             { id: 2, send_by_me: true, message: 'Claro, 14:00.', created_at: '09:15' },
@@ -50,6 +54,8 @@ export const contacts = [
         work_hours: '10:00 - 19:00',
         availability: 'Remoto',
         profile_picture: 'https://randomuser.me/api/portraits/women/3.jpg',
+        bio: 'Enfocada en crear experiencias centradas en el usuario que sean visualmente impactantes y fáciles de usar. Amante de la tipografía.',
+        tenure: '1.5 años en la empresa',
         messages: [
             { id: 1, send_by_me: false, message: 'Mira los wireframes.', created_at: '11:30' },
             { id: 2, send_by_me: true, message: 'Revisando.', created_at: '11:35' },

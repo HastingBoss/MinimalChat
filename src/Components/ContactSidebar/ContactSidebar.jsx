@@ -26,7 +26,9 @@ export default function ContactSidebar() {
         job_title: 'Líder de Producto',
         profile_picture: 'https://randomuser.me/api/portraits/men/32.jpg',
         work_hours: '09:00 - 18:00',
-        availability: 'Disponible'
+        availability: 'Disponible',
+        bio: 'Liderando la visión del producto y asegurando la excelencia en cada sprint. Entusiasta de la IA y el diseño minimalista.',
+        tenure: '4 años en la empresa'
     }
 
     const filteredContacts = contacts.filter(contact =>
@@ -89,6 +91,14 @@ export default function ContactSidebar() {
                                     <span className="label">Horario laboral</span>
                                     <span className="value">{profileModalData.work_hours}</span>
                                 </div>
+                                <div className="info-item">
+                                    <span className="label">Tiempo en la empresa</span>
+                                    <span className="value">{profileModalData.tenure || 'Recién ingresado'}</span>
+                                </div>
+                            </div>
+                            <div className="profile-bio">
+                                <span className="label">Acerca de</span>
+                                <p>{profileModalData.bio || 'Sin descripción profesional disponible.'}</p>
                             </div>
                             <button className="primary-btn" onClick={() => setProfileModalData(null)}>Cerrar</button>
                         </div>

@@ -5,6 +5,7 @@ import './RightPanel.css'
 export default function RightPanel({ contact }) {
     const { showNotification } = useNotification()
     const [isMemberListOpen, setIsMemberListOpen] = useState(false)
+    const [isProfileModalOpen, setIsProfileModalOpen] = useState(false)
 
     if (!contact) return null
 
@@ -86,11 +87,49 @@ export default function RightPanel({ contact }) {
                                     <span>Remoto</span>
                                 </div>
                             </div>
-                            <button className='view-full-profile-btn' onClick={() => showNotification(`Viendo perfil completo de ${contact.name}`, 'info')}>Perfil completo</button>
+                            <button className='view-full-profile-btn' onClick={() => setIsProfileModalOpen(true)}>Perfil completo</button>
                         </div>
                     </>
                 )}
             </div>
+
+            {/* Modal de Perfil Completo (Sincronizado con Sidebar) */}
+            {isProfileModalOpen && (
+                <div className="custom-modal-overlay" onClick={() => setIsProfileModalOpen(false)}>
+                    <div className="profile-modal" onClick={e => e.stopPropagation()}>
+                        <div className="profile-header">
+                            <img src={contact.profile_picture} alt={contact.name} />
+                            <i className="bi bi-x-lg close-icon" onClick={() => setIsProfileModalOpen(false)}></i>
+                        </div>
+                        <div className="profile-body">
+                            <h2>{contact.name}</h2>
+                            <p className="job-title">{contact.job_title}</p>
+                            <div className="profile-info-grid">
+                                <div className="info-item">
+                                    <span className="label">Disponibilidad</span>
+                                    <span className={`value ${contact.availability === 'En línea' ? 'status-online' : ''}`}>
+                                        {contact.availability === 'En línea' && <i className="bi bi-circle-fill"></i>}
+                                        {contact.availability || 'Desconectado'}
+                                    </span>
+                                </div>
+                                <div className="info-item">
+                                    <span className="label">Horario laboral</span>
+                                    <span className="value">{contact.work_hours || 'Sin definir'}</span>
+                                </div>
+                                <div className="info-item">
+                                    <span className="label">Tiempo en la empresa</span>
+                                    <span className="value">{contact.tenure || 'Miembro reciente'}</span>
+                                </div>
+                            </div>
+                            <div className="profile-bio">
+                                <span className="label">Acerca de</span>
+                                <p>{contact.bio || 'Sin descripción profesional disponible actualmente.'}</p>
+                            </div>
+                            <button className="primary-btn" onClick={() => setIsProfileModalOpen(false)}>Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             <div className='panel-section'>
                 <div className='section-header'>
