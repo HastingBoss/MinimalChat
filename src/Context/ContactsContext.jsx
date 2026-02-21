@@ -19,7 +19,7 @@ export default function ContactsProvider({ children }) {
         setContacts: setContacts,
         channels: channels,
         setChannels: setChannels,
-        addContact: (newContact) => setContacts(prev => [...prev, { ...newContact, id: Date.now(), type: 'dm', messages: [] }]),
+        addContact: (newContact) => setContacts(prev => [...prev, { ...newContact, type: 'dm', messages: [] }]),
         deleteContact: (id) => setContacts(prev => prev.filter(c => c.id !== id))
     }
 
