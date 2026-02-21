@@ -5,7 +5,7 @@ import { useNotification } from '../../Context/NotificationContext'
 import AiSummarizer from '../AiBot/AiSummarizer'
 import './ContactSidebar.css'
 
-export default function ContactSidebar({ onClose }) {
+export default function ContactSidebar({ onClose, onOpenAi }) {
     const { contacts, channels, addContact, deleteContact } = useContext(ContactsContext)
     const { showNotification } = useNotification()
     const [searchParams, setSearchParams] = useSearchParams()
@@ -18,7 +18,6 @@ export default function ContactSidebar({ onClose }) {
     const [newContactName, setNewContactName] = useState('')
     const [profileModalData, setProfileModalData] = useState(null)
     const [activeContactMenu, setActiveContactMenu] = useState(null)
-    const [isAiModalOpen, setIsAiModalOpen] = useState(false)
 
     // Datos del usuario actual (quemados para el ejemplo)
     const currentUser = {
@@ -172,7 +171,7 @@ export default function ContactSidebar({ onClose }) {
                                 const activeContact = contacts.find(c => String(c.id) === contact_id) ||
                                     channels.find(c => String(c.id) === contact_id);
                                 if (activeContact) {
-                                    setIsAiModalOpen(true);
+                                    onOpenAi();
                                 } else {
                                     showNotification('Selecciona un chat primero para resumirlo con IA', 'info');
                                 }
@@ -245,21 +244,6 @@ export default function ContactSidebar({ onClose }) {
                     <span>Configuración</span>
                 </div>
             </div>
-
-            {/* Modal del Bot IA */}
-            {isAiModalOpen && (
-                <AiSummarizer
-                    messages={
-                        (contacts.find(c => String(c.id) === contact_id) ||
-                            channels.find(c => String(c.id) === contact_id))?.messages || []
-                    }
-                    contactName={
-                        (contacts.find(c => String(c.id) === contact_id) ||
-                            channels.find(c => String(c.id) === contact_id))?.name || "Chat"
-                    }
-                    onClose={() => setIsAiModalOpen(false)}
-                />
-            )}
         </div>
     )
 }

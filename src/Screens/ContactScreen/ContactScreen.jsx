@@ -9,6 +9,7 @@ import ChatHeader from '../../Components/Chat/ChatHeader'
 import MessageList from '../../Components/Chat/MessageList'
 import MessageInput from '../../Components/Chat/MessageInput'
 import RightPanel from '../../Components/Chat/RightPanel'
+import AiSummarizer from '../../Components/AiBot/AiSummarizer'
 
 import { useNotification } from '../../Context/NotificationContext'
 
@@ -26,6 +27,7 @@ export default function ContactScreen() {
     // Estados para sidebars responsivos
     const [isLeftSidebarOpen, setIsLeftSidebarOpen] = useState(false)
     const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false)
+    const [isAiModalOpen, setIsAiModalOpen] = useState(false)
 
     // Cerrar sidebars al cambiar de contacto (especialmente en móvil)
     useEffect(() => {
@@ -142,7 +144,10 @@ export default function ContactScreen() {
             )}
 
             <div className={`sidebar-wrapper ${isLeftSidebarOpen ? 'open' : ''}`}>
-                <ContactSidebar onClose={() => setIsLeftSidebarOpen(false)} />
+                <ContactSidebar
+                    onClose={() => setIsLeftSidebarOpen(false)}
+                    onOpenAi={() => setIsAiModalOpen(true)}
+                />
             </div>
 
             {!contact_selected ? (
@@ -191,6 +196,15 @@ export default function ContactScreen() {
                         />
                     </div>
                 </>
+            )}
+
+            {/* Modal del Bot IA Global */}
+            {isAiModalOpen && (
+                <AiSummarizer
+                    messages={contact_selected?.messages || []}
+                    contactName={contact_selected?.name || "Chat"}
+                    onClose={() => setIsAiModalOpen(false)}
+                />
             )}
         </div>
     )
