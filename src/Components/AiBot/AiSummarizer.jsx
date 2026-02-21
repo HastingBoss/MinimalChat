@@ -6,61 +6,58 @@ export default function AiSummarizer({ messages, contactName, onClose }) {
     const [summary, setSummary] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
+    const [hasAttempted, setHasAttempted] = useState(false)
 
-    // Configuración de Gemini
+    // Solo resumimos una vez al montar el componente
     useEffect(() => {
-        if (messages && messages.length > 0) {
+        if (!hasAttempted && messages && messages.length > 0) {
             handleSummarize()
-        } else {
+        } else if (!messages || messages.length === 0) {
             setSummary("No hay suficientes mensajes en este chat para generar un resumen.")
         }
-    }, [messages])
+    }, [messages, hasAttempted])
 
     const handleSummarize = async () => {
         const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 
-        console.log("Intentando resumir chat...");
-        console.log("API Key detectada:", apiKey ? "SÍ (empieza con " + apiKey.substring(0, 5) + "...)" : "NO");
-
         if (!apiKey) {
-            setError("Error: No se encontró la API Key de Gemini. Asegúrate de configurar VITE_GEMINI_API_KEY en tu archivo .env y REINICIAR el comando npm run dev.");
+            setError("Error: No se encontró la API Key de Gemini. Verifica tu archivo .env");
             return
         }
 
-        const genAI = new GoogleGenerativeAI(apiKey.trim());
         setIsLoading(true)
         setError(null)
+        setHasAttempted(true)
 
         try {
-            const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" })
+            const genAI = new GoogleGenerativeAI(apiKey.trim());
+            // En 2026, el modelo estándar para el tier gratuito es 2.5-flash
+            const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" })
 
-            // Formatear mensajes para el prompt
             const chatHistory = messages
-                .slice(-20) // Tomamos los últimos 20 mensajes para el resumen
+                .slice(-30)
                 .map(m => {
                     const sender = m.send_by_me ? "Yo" : (m.sender?.name || contactName)
-                    return `[${m.created_at}] ${sender}: ${m.message}`
+                    return `${sender}: ${m.message}`
                 })
                 .join("\n")
 
-            const prompt = `Actúa como un asistente administrativo formal y experto en comunicación corporativa. 
-            Tu tarea es resumir los puntos más importantes de la siguiente conversación en Slack de forma concisa.
-            
-            Reglas:
-            1. Usa un tono profesional y directo.
-            2. Presenta el resumen en 3 o 4 puntos clave (bullet points).
-            3. Si se mencionaron tareas, fechas o acuerdos, asegúrate de incluirlos.
-            4. Responde en español.
-
-            Conversación:
-            ${chatHistory}`
+            const prompt = `Actúa como un asistente administrativo profesional. Resume esta conversación de chat en 3 puntos clave destacando acuerdos o tareas: \n\n${chatHistory}`
 
             const result = await model.generateContent(prompt)
             const response = await result.response
             setSummary(response.text())
         } catch (error) {
-            console.error("Error al resumir:", error)
-            setError("No se pudo generar el resumen. Verifica tu conexión o la validez de tu API Key.")
+            console.error("Error Gemini:", error)
+            let errorMsg = "No se pudo generar el resumen. Revisa tu conexión o API Key.";
+
+            if (error.message?.includes("429")) {
+                errorMsg = "Límite de cuota excedido para el plan gratuito. Por favor, intenta de nuevo en 30 segundos.";
+            } else if (error.message?.includes("404")) {
+                errorMsg = "El modelo de IA solicitado no está disponible. Intentando reconectar...";
+            }
+
+            setError(errorMsg)
         } finally {
             setIsLoading(false)
         }
