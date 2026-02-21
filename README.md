@@ -13,19 +13,19 @@ Este proyecto se destaca por la integración de tecnologías de IA para optimiza
 ## 📊 Estadísticas del Proyecto
 Datos actualizados según el historial de desarrollo:
 
-- **Total de Commits**: 13
-- **Tiempo de Desarrollo**: ~28 horas efectivas de programación.
-- **Interacciones con IA**: +65 prompts estratégicos para diseño y debugging.
+- **Total de Commits**: 18
+- **Tiempo de Desarrollo**: ~32 horas efectivas de programación.
+- **Interacciones con IA**: +75 prompts estratégicos para diseño y debugging.
 - **Archivos Desarrollados**: 23 archivos (Componentes, Contexts, Hooks y Servicios).
-- **Cobertura Visual**: 100% Responsivo (Mobile First).
+- **Cobertura Visual**: 100% Responsivo (Desde 320px hasta ultra-wide).
 
 ## 🚀 Funcionalidades Principales
 - **Chat en tiempo real (simulado)**: Envío y recepción de mensajes con soporte para Markdown.
 - **Bot IA de Resumen**: Analiza los últimos mensajes de cualquier chat y genera puntos clave.
 - **Buscador de Mensajes**: Filtrado dinámico con resaltado animado de coincidencias.
-- **Llamadas Inteligentes**: Sistema de llamadas con validación de horario laboral y avatares dinámicos por iniciales para grupos.
-- **Perfil Completo**: Vista detallada de los miembros con bio profesional y antigüedad.
-- **Totalmente Responsivo**: Optimizado para dispositivos móviles mediante unidades dinámicas (`dvh`).
+- **Llamadas Inteligentes**: Sistema de llamadas con validación de horario laboral y avatares dinámicos.
+- **Adaptive Info Panel**: Panel lateral que se integra al layout (>975px) o se despliega bajo demanda mediante el icono "i" en pantallas menores, optimizando el espacio.
+- **Totalmente Responsivo**: Optimizado para dispositivos móviles críticos (320px) mediante unidades dinámicas (`dvh`) y menús off-canvas individuales.
 
 ## 🛠️ Stack Tecnológico
 - **React 19**: Biblioteca principal para la UI basada en componentes.

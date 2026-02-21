@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react'
 import { Link, useSearchParams, useParams, useNavigate } from 'react-router'
 import { ContactsContext } from '../../Context/ContactsContext'
 import { useNotification } from '../../Context/NotificationContext'
-import AiSummarizer from '../AiBot/AiSummarizer'
 import './ContactSidebar.css'
 
 export default function ContactSidebar({ onClose, onOpenAi }) {
