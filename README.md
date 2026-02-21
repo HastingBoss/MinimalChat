@@ -14,8 +14,8 @@ Este proyecto se destaca por la integración de tecnologías de IA para optimiza
 Datos actualizados según el historial de desarrollo:
 
 - **Total de Commits**: 13
-- **Tiempo de Desarrollo**: ~8 horas efectivas de programación.
-- **Interacciones con IA**: +65 prompts estratégicos para diseño y lógica.
+- **Tiempo de Desarrollo**: ~28 horas efectivas de programación.
+- **Interacciones con IA**: +65 prompts estratégicos para diseño y debugging.
 - **Archivos Desarrollados**: 23 archivos (Componentes, Contexts, Hooks y Servicios).
 - **Cobertura Visual**: 100% Responsivo (Mobile First).
 
