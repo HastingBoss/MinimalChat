@@ -13,3 +13,5 @@ Arreglar sidebar derecho mostrandose sobre otros elementos
 Implementar tema oscuro
 
 Corregir contraste de texto de los cargos laborales en el menu de llamada
+
+Agregar saltos de linea al crear inputs de texto largos
