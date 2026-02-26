@@ -3,10 +3,9 @@ import { createPortal } from 'react-dom'
 import { Link, useSearchParams, useParams, useNavigate } from 'react-router'
 import { ContactsContext } from '../../Context/ContactsContext'
 import { useNotification } from '../../Context/NotificationContext'
-import ProfileModal from '../../MicroApps/Profile/ProfileModal'
-import './ContactSidebar.css'
+import './LeftSideBar.css'
 
-export default function ContactSidebar({ onClose, onOpenAi }) {
+export default function LeftSideBar({ onClose, onOpenAi }) {
     const { contacts, channels, addContact, deleteContact } = useContext(ContactsContext)
     const { showNotification } = useNotification()
     const [searchParams, setSearchParams] = useSearchParams()
@@ -17,7 +16,6 @@ export default function ContactSidebar({ onClose, onOpenAi }) {
     // Estados para modales y menús
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [newContactName, setNewContactName] = useState('')
-    const [profileModalData, setProfileModalData] = useState(null)
     const [activeContactMenu, setActiveContactMenu] = useState(null)
 
     // Datos del usuario actual (quemados para el ejemplo)
@@ -71,11 +69,6 @@ export default function ContactSidebar({ onClose, onOpenAi }) {
 
     return (
         <div className='sidebar' onClick={() => setActiveContactMenu(null)}>
-            {/* Modal de Perfil (Genérico para usuario y contactos) */}
-            <ProfileModal
-                userData={profileModalData}
-                onClose={() => setProfileModalData(null)}
-            />
 
             {isAddModalOpen && createPortal(
                 <div className="custom-modal-overlay">
@@ -112,7 +105,7 @@ export default function ContactSidebar({ onClose, onOpenAi }) {
                     <h2>MinimalChat</h2>
                 </div>
 
-                <div className='user-profile-card' onClick={() => { setProfileModalData(currentUser); onClose(); }}>
+                <div className='user-profile-card' onClick={() => { navigate('/contact/me/profile'); onClose(); }}>
                     <img src={currentUser.profile_picture} alt={currentUser.name} />
                     <div className='user-status-info'>
                         <span className='user-name'>{currentUser.name}</span>
@@ -195,7 +188,7 @@ export default function ContactSidebar({ onClose, onOpenAi }) {
 
                                 {activeContactMenu === contact.id && (
                                     <div className="contact-context-menu" onClick={e => e.stopPropagation()}>
-                                        <div className="menu-item" onClick={() => { setProfileModalData(contact); setActiveContactMenu(null); onClose(); }}>
+                                        <div className="menu-item" onClick={() => { navigate(`/contact/${contact.id}/profile`); setActiveContactMenu(null); onClose(); }}>
                                             <i className="bi bi-person"></i> Perfil
                                         </div>
                                         <div className="menu-item" onClick={() => { showNotification(`${contact.name} silenciado`, 'info'); setActiveContactMenu(null); }}>

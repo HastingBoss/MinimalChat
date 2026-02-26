@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { createPortal } from 'react-dom'
+import { useParams, useNavigate } from 'react-router'
 import { useNotification } from '../../Context/NotificationContext'
-import ProfileModal from '../../MicroApps/Profile/ProfileModal'
-import './RightPanel.css'
+import './RightSideBar.css'
 
-export default function RightPanel({ contact, onClose }) {
+export default function RightSideBar({ contact, onClose }) {
+    const { contact_id } = useParams()
+    const navigate = useNavigate()
     const { showNotification } = useNotification()
     const [isMemberListOpen, setIsMemberListOpen] = useState(false)
-    const [isProfileModalOpen, setIsProfileModalOpen] = useState(false)
 
     if (!contact) return null
 
@@ -70,7 +71,7 @@ export default function RightPanel({ contact, onClose }) {
                                     <div className="empty-preview">Ver todos</div>
                                 )}
                             </div>
-                            <button className='add-people-btn' onClick={() => showNotification('Función de invitación restringida', 'error')}>Agregar personas</button>
+                            <button className='add-people-btn' onClick={() => { navigate(`/contact/${contact_id}/group-settings`); onClose() }}>Configuración</button>
                         </div>
                     </>
                 ) : (
@@ -94,19 +95,13 @@ export default function RightPanel({ contact, onClose }) {
                                     <span>Remoto</span>
                                 </div>
                             </div>
-                            <button className='view-full-profile-btn' onClick={() => { setIsProfileModalOpen(true); onClose(); }}>Perfil completo</button>
+                            <button className='view-full-profile-btn' onClick={() => { navigate(`/contact/${contact_id}/profile`); onClose(); }}>Perfil completo</button>
                         </div>
                     </>
                 )}
             </div>
 
-            {/* Modal de Perfil Completo (Sincronizado con Sidebar) */}
-            {isProfileModalOpen && (
-                <ProfileModal
-                    userData={contact}
-                    onClose={() => setIsProfileModalOpen(false)}
-                />
-            )}
+
 
             <div className='panel-section'>
                 <div className='section-header'>

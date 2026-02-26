@@ -3,14 +3,13 @@ import React from 'react'
 import { useParams, Outlet } from 'react-router'
 import { useContext, useState, useEffect } from 'react'
 import { ContactsContext } from '../../Context/ContactsContext'
-import ContactSidebar from '../../Components/ContactSidebar/ContactSidebar'
-import CallOverlay from '../../MicroApps/CallOverlay/CallOverlay'
-import ChatHeader from '../../Components/Chat/ChatHeader'
-import MessageList from '../../Components/Chat/MessageList'
-import MessageInput from '../../Components/Chat/MessageInput'
-import RightPanel from '../../Components/Chat/RightPanel'
-import AiSummarizer from '../../MicroApps/AiBot/AiSummarizer'
-
+import LeftSideBar from '../../Components/LeftSideBar/LeftSideBar'
+import CallOverlay from '../../Components/MicroApps/CallOverlay/CallOverlay'
+import ChatHeader from '../../Components/Chat/ChatHeader/ChatHeader'
+import MessageList from '../../Components/Chat/MessageList/MessageList'
+import MessageInput from '../../Components/Chat/MessageInput/MessageInput'
+import RightSideBar from '../../Components/RightSideBar/RightSideBar'
+import { useNavigate } from 'react-router'
 import { useNotification } from '../../Context/NotificationContext'
 
 export default function ContactScreen() {
@@ -18,6 +17,7 @@ export default function ContactScreen() {
     const { contacts, setContacts, channels, setChannels } = useContext(ContactsContext)
     const { contact_id } = useParams()
     const { showNotification } = useNotification()
+    const navigate = useNavigate()
 
     // Estados locales para el manejo de la UI del chat
     const [messageText, setMessageText] = useState('')
@@ -27,7 +27,6 @@ export default function ContactScreen() {
     // Estados para sidebars responsivos
     const [isLeftSidebarOpen, setIsLeftSidebarOpen] = useState(false)
     const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false)
-    const [isAiModalOpen, setIsAiModalOpen] = useState(false)
 
     // Cerrar sidebars al cambiar de contacto (especialmente en móvil)
     useEffect(() => {
@@ -144,9 +143,9 @@ export default function ContactScreen() {
             )}
 
             <div className={`sidebar-wrapper ${isLeftSidebarOpen ? 'open' : ''}`}>
-                <ContactSidebar
+                <LeftSideBar
                     onClose={() => setIsLeftSidebarOpen(false)}
-                    onOpenAi={() => setIsAiModalOpen(true)}
+                    onOpenAi={() => navigate('ai-bot')}
                 />
             </div>
 
@@ -190,21 +189,12 @@ export default function ContactScreen() {
                         />
                     </div>
                     <div className={`right-panel-wrapper ${isRightSidebarOpen ? 'open' : ''}`}>
-                        <RightPanel
+                        <RightSideBar
                             contact={contact_selected}
                             onClose={() => setIsRightSidebarOpen(false)}
                         />
                     </div>
                 </>
-            )}
-
-            {/* Modal del Bot IA Global */}
-            {isAiModalOpen && (
-                <AiSummarizer
-                    messages={contact_selected?.messages || []}
-                    contactName={contact_selected?.name || "Chat"}
-                    onClose={() => setIsAiModalOpen(false)}
-                />
             )}
 
             {/* Rutas para micro-apps y perfil */}

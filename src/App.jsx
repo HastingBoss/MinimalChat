@@ -5,10 +5,11 @@ import { Route, Routes } from 'react-router'
 import HomeScreen from './Screens/HomeScreen/HomeScreen'
 import ContactScreen from './Screens/ContactScreen/ContactScreen'
 import ErrorNotFoundScreen from './Screens/ErrorNotFoundScreen/ErrorNotFoundScreen'
-// Proveedor de contexto para los contactos
 import ContactsProvider from './Context/ContactsContext'
 import { NotificationProvider } from './Context/NotificationContext'
-
+import ProfileWrapper from './Components/MicroApps/Profile/ProfileWrapper'
+import AiBotWrapper from './Components/MicroApps/AiBot/AiBotWrapper'
+import GroupSettingsWrapper from './Components/MicroApps/GroupSettings/GroupSettingsWrapper'
 function App() {
   return (
     <div className='app'>
@@ -27,9 +28,9 @@ function App() {
                 <ContactScreen />
               }>
               {/* Rutas alternativas para funcionalidades adicionales (Micro-apps) */}
-              <Route path='profile' element={<div>Perfil Wrapper (WIP)</div>} />
-              <Route path='ai-bot' element={<div>AI Bot Wrapper (WIP)</div>} />
-              <Route path='group-settings' element={<div>Configuración de Grupo (WIP)</div>} />
+              <Route path='profile' element={<ProfileWrapper />} />
+              <Route path='ai-bot' element={<AiBotWrapper />} />
+              <Route path='group-settings' element={<GroupSettingsWrapper />} />
             </Route>
             <Route
               path='*'

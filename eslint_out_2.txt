@@ -1,0 +1,52 @@
+﻿
+C:\Users\Workstation\Code\Ejercicios\TP-2-MinimalChat\src\Components\Chat\ChatHeader\ChatHeader.jsx
+  11:11  error  'handleInfoClick' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\Workstation\Code\Ejercicios\TP-2-MinimalChat\src\Components\Chat\MessageList\MessageList.jsx
+  54:45  error  'index' is defined but never used  no-unused-vars
+
+C:\Users\Workstation\Code\Ejercicios\TP-2-MinimalChat\src\Components\MicroApps\AiBot\AiSummarizer.jsx
+  18:8  warning  React Hook useEffect has a missing dependency: 'handleSummarize'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\Workstation\Code\Ejercicios\TP-2-MinimalChat\src\Components\MicroApps\CallOverlay\CallOverlay.jsx
+  11:13  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+   9 |         let interval
+  10 |         if (isActive) {
+> 11 |             setDuration(0)
+     |             ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  12 |             interval = setInterval(() => {
+  13 |                 setDuration(prev => prev + 1)
+  14 |             }, 1000)  react-hooks/set-state-in-effect
+
+C:\Users\Workstation\Code\Ejercicios\TP-2-MinimalChat\src\Context\ContactsContext.jsx
+  5:14  error  Fast refresh only works when a file only exports components. Move your React context(s) to a separate file  react-refresh/only-export-components
+
+C:\Users\Workstation\Code\Ejercicios\TP-2-MinimalChat\src\Context\NotificationContext.jsx
+  25:14  error  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\Workstation\Code\Ejercicios\TP-2-MinimalChat\src\Screens\ContactScreen\ContactScreen.jsx
+  33:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  31 |     // Cerrar sidebars al cambiar de contacto (especialmente en m├│vil)
+  32 |     useEffect(() => {
+> 33 |         setIsLeftSidebarOpen(false)
+     |         ^^^^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  34 |         setIsRightSidebarOpen(false)
+  35 |     }, [contact_id])
+  36 |  react-hooks/set-state-in-effect
+
+Ô£û 7 problems (6 errors, 1 warning)
+

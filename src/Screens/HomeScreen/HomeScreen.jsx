@@ -1,5 +1,5 @@
 import React from 'react'
-import ContactSidebar from '../../Components/ContactSidebar/ContactSidebar'
+import LeftSideBar from '../../Components/LeftSideBar/LeftSideBar'
 import './HomeScreen.css'
 
 export default function HomeScreen() {
@@ -22,7 +22,7 @@ export default function HomeScreen() {
             ></i>
 
             <div className={`sidebar-wrapper ${isLeftSidebarOpen ? 'open' : ''}`}>
-                <ContactSidebar onClose={() => setIsLeftSidebarOpen(false)} />
+                <LeftSideBar onClose={() => setIsLeftSidebarOpen(false)} />
             </div>
 
             <div className='chat-container home-container'>
