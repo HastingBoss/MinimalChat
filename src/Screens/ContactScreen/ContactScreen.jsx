@@ -1,15 +1,15 @@
 // Hooks y componentes necesarios
 import React from 'react'
-import { useParams } from 'react-router'
+import { useParams, Outlet } from 'react-router'
 import { useContext, useState, useEffect } from 'react'
 import { ContactsContext } from '../../Context/ContactsContext'
 import ContactSidebar from '../../Components/ContactSidebar/ContactSidebar'
-import CallOverlay from '../../Components/CallOverlay/CallOverlay'
+import CallOverlay from '../../MicroApps/CallOverlay/CallOverlay'
 import ChatHeader from '../../Components/Chat/ChatHeader'
 import MessageList from '../../Components/Chat/MessageList'
 import MessageInput from '../../Components/Chat/MessageInput'
 import RightPanel from '../../Components/Chat/RightPanel'
-import AiSummarizer from '../../Components/AiBot/AiSummarizer'
+import AiSummarizer from '../../MicroApps/AiBot/AiSummarizer'
 
 import { useNotification } from '../../Context/NotificationContext'
 
@@ -206,6 +206,9 @@ export default function ContactScreen() {
                     onClose={() => setIsAiModalOpen(false)}
                 />
             )}
+
+            {/* Rutas para micro-apps y perfil */}
+            <Outlet />
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useCallback } from 'react'
-import './NotificationContext.css'
+import Notification from '../Components/Notification/Notification'
 
 const NotificationContext = createContext()
 
@@ -15,15 +15,9 @@ export function NotificationProvider({ children }) {
     }, [])
 
     return (
-        <NotificationContext.Provider value={{ showNotification }}>
+        <NotificationContext.Provider value={{ showNotification, notifications }}>
             {children}
-            <div className="notification-container">
-                {notifications.map(n => (
-                    <div key={n.id} className={`notification ${n.type}`}>
-                        {n.message}
-                    </div>
-                ))}
-            </div>
+            <Notification />
         </NotificationContext.Provider>
     )
 }

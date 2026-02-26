@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import { createPortal } from 'react-dom'
 import { useNotification } from '../../Context/NotificationContext'
+import ProfileModal from '../../MicroApps/Profile/ProfileModal'
 import './RightPanel.css'
 
 export default function RightPanel({ contact, onClose }) {
@@ -20,7 +22,7 @@ export default function RightPanel({ contact, onClose }) {
                 <i className="bi bi-x-lg close-panel-icon" onClick={onClose}></i>
             </div>
             {/* Modal de Lista de Miembros Estilo Sidebar */}
-            {isMemberListOpen && (
+            {isMemberListOpen && createPortal(
                 <div className="custom-modal-overlay" onClick={() => setIsMemberListOpen(false)}>
                     <div className="member-list-modal" onClick={e => e.stopPropagation()}>
                         <div className="modal-header">
@@ -44,7 +46,7 @@ export default function RightPanel({ contact, onClose }) {
                             )}
                         </div>
                     </div>
-                </div>
+                </div>, document.body
             )}
 
             <div className='panel-section'>
@@ -56,7 +58,7 @@ export default function RightPanel({ contact, onClose }) {
                                 <span>Miembros</span>
                                 <span className='member-count'>{members.length}</span>
                             </div>
-                            <div className='member-preview-list' onClick={() => setIsMemberListOpen(true)}>
+                            <div className='member-preview-list' onClick={() => { setIsMemberListOpen(true); onClose(); }}>
                                 {members.length > 0 ? (
                                     <>
                                         {members.slice(0, 4).map((m, i) => (
@@ -92,7 +94,7 @@ export default function RightPanel({ contact, onClose }) {
                                     <span>Remoto</span>
                                 </div>
                             </div>
-                            <button className='view-full-profile-btn' onClick={() => setIsProfileModalOpen(true)}>Perfil completo</button>
+                            <button className='view-full-profile-btn' onClick={() => { setIsProfileModalOpen(true); onClose(); }}>Perfil completo</button>
                         </div>
                     </>
                 )}
@@ -100,40 +102,10 @@ export default function RightPanel({ contact, onClose }) {
 
             {/* Modal de Perfil Completo (Sincronizado con Sidebar) */}
             {isProfileModalOpen && (
-                <div className="custom-modal-overlay" onClick={() => setIsProfileModalOpen(false)}>
-                    <div className="profile-modal" onClick={e => e.stopPropagation()}>
-                        <div className="profile-header">
-                            <img src={contact.profile_picture} alt={contact.name} />
-                            <i className="bi bi-x-lg close-icon" onClick={() => setIsProfileModalOpen(false)}></i>
-                        </div>
-                        <div className="profile-body">
-                            <h2>{contact.name}</h2>
-                            <p className="job-title">{contact.job_title}</p>
-                            <div className="profile-info-grid">
-                                <div className="info-item">
-                                    <span className="label">Disponibilidad</span>
-                                    <span className={`value ${contact.availability === 'En línea' ? 'status-online' : ''}`}>
-                                        {contact.availability === 'En línea' && <i className="bi bi-circle-fill"></i>}
-                                        {contact.availability || 'Desconectado'}
-                                    </span>
-                                </div>
-                                <div className="info-item">
-                                    <span className="label">Horario laboral</span>
-                                    <span className="value">{contact.work_hours || 'Sin definir'}</span>
-                                </div>
-                                <div className="info-item">
-                                    <span className="label">Tiempo en la empresa</span>
-                                    <span className="value">{contact.tenure || 'Miembro reciente'}</span>
-                                </div>
-                            </div>
-                            <div className="profile-bio">
-                                <span className="label">Acerca de</span>
-                                <p>{contact.bio || 'Sin descripción profesional disponible actualmente.'}</p>
-                            </div>
-                            <button className="primary-btn" onClick={() => setIsProfileModalOpen(false)}>Cerrar</button>
-                        </div>
-                    </div>
-                </div>
+                <ProfileModal
+                    userData={contact}
+                    onClose={() => setIsProfileModalOpen(false)}
+                />
             )}
 
             <div className='panel-section'>

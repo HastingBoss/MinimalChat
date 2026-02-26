@@ -1,7 +1,9 @@
 import React, { useContext, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Link, useSearchParams, useParams, useNavigate } from 'react-router'
 import { ContactsContext } from '../../Context/ContactsContext'
 import { useNotification } from '../../Context/NotificationContext'
+import ProfileModal from '../../MicroApps/Profile/ProfileModal'
 import './ContactSidebar.css'
 
 export default function ContactSidebar({ onClose, onOpenAi }) {
@@ -70,41 +72,12 @@ export default function ContactSidebar({ onClose, onOpenAi }) {
     return (
         <div className='sidebar' onClick={() => setActiveContactMenu(null)}>
             {/* Modal de Perfil (Genérico para usuario y contactos) */}
-            {profileModalData && (
-                <div className="custom-modal-overlay" onClick={() => setProfileModalData(null)}>
-                    <div className="profile-modal" onClick={e => e.stopPropagation()}>
-                        <div className="profile-header">
-                            <img src={profileModalData.profile_picture} alt={profileModalData.name} />
-                            <i className="bi bi-x-lg close-icon" onClick={() => setProfileModalData(null)}></i>
-                        </div>
-                        <div className="profile-body">
-                            <h2>{profileModalData.name}</h2>
-                            <p className="job-title">{profileModalData.job_title}</p>
-                            <div className="profile-info-grid">
-                                <div className="info-item">
-                                    <span className="label">Disponibilidad</span>
-                                    <span className="value status-online"><i className="bi bi-circle-fill"></i> {profileModalData.availability || 'En línea'}</span>
-                                </div>
-                                <div className="info-item">
-                                    <span className="label">Horario laboral</span>
-                                    <span className="value">{profileModalData.work_hours}</span>
-                                </div>
-                                <div className="info-item">
-                                    <span className="label">Tiempo en la empresa</span>
-                                    <span className="value">{profileModalData.tenure || 'Recién ingresado'}</span>
-                                </div>
-                            </div>
-                            <div className="profile-bio">
-                                <span className="label">Acerca de</span>
-                                <p>{profileModalData.bio || 'Sin descripción profesional disponible.'}</p>
-                            </div>
-                            <button className="primary-btn" onClick={() => setProfileModalData(null)}>Cerrar</button>
-                        </div>
-                    </div>
-                </div>
-            )}
+            <ProfileModal
+                userData={profileModalData}
+                onClose={() => setProfileModalData(null)}
+            />
 
-            {isAddModalOpen && (
+            {isAddModalOpen && createPortal(
                 <div className="custom-modal-overlay">
                     <div className="custom-modal">
                         <h3>Nuevo Contacto</h3>
@@ -122,7 +95,7 @@ export default function ContactSidebar({ onClose, onOpenAi }) {
                             </div>
                         </form>
                     </div>
-                </div>
+                </div>, document.body
             )}
 
             <div className='sidebar-top'>
@@ -139,7 +112,7 @@ export default function ContactSidebar({ onClose, onOpenAi }) {
                     <h2>MinimalChat</h2>
                 </div>
 
-                <div className='user-profile-card' onClick={() => setProfileModalData(currentUser)}>
+                <div className='user-profile-card' onClick={() => { setProfileModalData(currentUser); onClose(); }}>
                     <img src={currentUser.profile_picture} alt={currentUser.name} />
                     <div className='user-status-info'>
                         <span className='user-name'>{currentUser.name}</span>
@@ -194,6 +167,7 @@ export default function ContactSidebar({ onClose, onOpenAi }) {
                                 key={channel.id}
                                 to={`/contact/${channel.id}`}
                                 className={`nav-item ${contact_id === String(channel.id) ? 'active' : ''}`}
+                                onClick={onClose}
                             >
                                 <i className="bi bi-hash"></i> {channel.name}
                             </Link>
@@ -204,7 +178,7 @@ export default function ContactSidebar({ onClose, onOpenAi }) {
                 <div className='nav-section'>
                     <div className='section-header'>
                         <h3 className='section-title'>MENSAJES DIRECTOS</h3>
-                        <i className="bi bi-plus-lg" style={{ cursor: 'pointer' }} onClick={() => setIsAddModalOpen(true)}></i>
+                        <i className="bi bi-plus-lg" style={{ cursor: 'pointer' }} onClick={() => { setIsAddModalOpen(true); onClose(); }}></i>
                     </div>
                     <div className='nav-list'>
                         {filteredContacts.map(contact => (
@@ -212,6 +186,7 @@ export default function ContactSidebar({ onClose, onOpenAi }) {
                                 <Link
                                     to={`/contact/${contact.id}`}
                                     className={`contact-nav-item ${contact_id === String(contact.id) ? 'active' : ''}`}
+                                    onClick={onClose}
                                 >
                                     <img src={contact.profile_picture} alt={contact.name} className='mini-avatar' />
                                     <span>{contact.name}</span>
@@ -220,7 +195,7 @@ export default function ContactSidebar({ onClose, onOpenAi }) {
 
                                 {activeContactMenu === contact.id && (
                                     <div className="contact-context-menu" onClick={e => e.stopPropagation()}>
-                                        <div className="menu-item" onClick={() => { setProfileModalData(contact); setActiveContactMenu(null); }}>
+                                        <div className="menu-item" onClick={() => { setProfileModalData(contact); setActiveContactMenu(null); onClose(); }}>
                                             <i className="bi bi-person"></i> Perfil
                                         </div>
                                         <div className="menu-item" onClick={() => { showNotification(`${contact.name} silenciado`, 'info'); setActiveContactMenu(null); }}>

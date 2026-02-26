@@ -516,7 +516,7 @@ body {
 .sidebar-wrapper,
 .right-panel-wrapper {
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 5000;
+    height: 100%;
 }
 
 /* Ocultar icono de info por defecto en escritorio */
@@ -547,6 +547,7 @@ body {
         transform: translateX(100%);
         width: 300px;
         background: white;
+        z-index: 5000;
     }
 
     .right-panel-wrapper.open {
@@ -608,6 +609,7 @@ body {
         transform: translateX(-100%);
         width: 280px;
         background: white;
+        z-index: 5000;
     }
 
     .sidebar {

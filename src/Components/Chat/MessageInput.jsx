@@ -1,9 +1,20 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import './MessageInput.css'
 
 export default function MessageInput({ messageText, setMessageText, onChange, onSubmit }) {
     const textareaRef = useRef(null)
     const fileInputRef = useRef(null)
+
+    /**
+     * Ajusta automáticamente la altura del textarea según el contenido
+     */
+    useEffect(() => {
+        const textarea = textareaRef.current
+        if (textarea) {
+            textarea.style.height = 'auto'
+            textarea.style.height = `${textarea.scrollHeight}px`
+        }
+    }, [messageText])
 
     /**
      * Permite enviar el mensaje con la tecla Enter, 
@@ -91,6 +102,7 @@ export default function MessageInput({ messageText, setMessageText, onChange, on
                         value={messageText}
                         onChange={onChange}
                         onKeyDown={handleKeyDown}
+                        style={{ maxHeight: '200px', overflowY: 'auto' }}
                     ></textarea>
                 </div>
 

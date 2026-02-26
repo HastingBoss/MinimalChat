@@ -25,7 +25,12 @@ function App() {
               path='/contact/:contact_id'
               element={
                 <ContactScreen />
-              } />
+              }>
+              {/* Rutas alternativas para funcionalidades adicionales (Micro-apps) */}
+              <Route path='profile' element={<div>Perfil Wrapper (WIP)</div>} />
+              <Route path='ai-bot' element={<div>AI Bot Wrapper (WIP)</div>} />
+              <Route path='group-settings' element={<div>Configuración de Grupo (WIP)</div>} />
+            </Route>
             <Route
               path='*'
               element={
