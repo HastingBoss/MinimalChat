@@ -20,7 +20,7 @@
 
 .call-content {
     text-align: center;
-    color: white;
+    color: var(--bg-color);
 }
 
 .call-avatar {
@@ -40,13 +40,13 @@
     justify-content: center;
     font-size: 3.5rem;
     font-weight: 800;
-    color: white;
+    color: var(--bg-color);
     box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.4);
     margin: 0 auto 24px;
 }
 
 .call-job-title {
-    color: #e2e8f0;
+    color: var(--border-color);
     margin: 0;
 }
 
@@ -61,7 +61,7 @@
 
 .end-call-button {
     background-color: #ef4444;
-    color: white;
+    color: var(--bg-color);
     border: none;
     width: 64px;
     height: 64px;

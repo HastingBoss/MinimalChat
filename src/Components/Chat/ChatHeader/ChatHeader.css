@@ -1,10 +1,10 @@
 .chat-header {
     padding: 16px 24px;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid var(--hover-bg);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: white;
+    background: var(--sidebar-bg);
     z-index: 10;
 }
 
@@ -15,12 +15,12 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #1e293b;
+    color: var(--text-strong);
 }
 
 .chat-header-description {
     font-size: 0.8rem;
-    color: #64748b;
+    color: var(--text-muted);
     margin: 4px 0 0;
 }
 
@@ -32,8 +32,8 @@
 
 .team-tag {
     font-size: 0.65rem;
-    background-color: #f1f5f9;
-    color: #64748b;
+    background-color: var(--hover-bg);
+    color: var(--text-muted);
     padding: 2px 8px;
     border-radius: 4px;
     margin-left: 8px;
@@ -50,14 +50,14 @@
     width: 24px;
     height: 24px;
     border-radius: 6px;
-    border: 2px solid white;
+    border: 2px solid var(--bg-color);
 }
 
 .member-count-badge {
     font-size: 0.65rem;
     font-weight: 700;
-    background: #f1f5f9;
-    color: #64748b;
+    background: var(--hover-bg);
+    color: var(--text-muted);
     width: 24px;
     height: 24px;
     border-radius: 6px;
@@ -65,7 +65,7 @@
     align-items: center;
     justify-content: center;
     margin-left: -6px;
-    border: 2px solid white;
+    border: 2px solid var(--bg-color);
 }
 
 .search-container {
@@ -76,12 +76,12 @@
 }
 
 .header-search-input {
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 4px 12px;
     font-size: 0.85rem;
     width: 150px;
-    background: #f8fafc;
+    background: var(--hover-bg-light);
     outline: none;
     animation: slideIn 0.2s ease;
 }
@@ -98,6 +98,16 @@
     }
 }
 
+@media (max-width: 480px) {
+    .team-tag {
+        display: none !important;
+    }
+
+    .chat-header-description {
+        display: none !important;
+    }
+}
+
 @media (max-width: 320px) {
     .chat-header-left h2 {
         font-size: 0.8rem;
@@ -106,19 +116,15 @@
     .header-search-input {
         width: 100px;
     }
-
-    .team-tag {
-        display: none;
-    }
 }
 
 .header-icon {
     font-size: 1.1rem;
-    color: #64748b;
+    color: var(--text-muted);
     cursor: pointer;
     transition: color 0.2s;
 }
 
 .header-icon:hover {
-    color: #4f46e5;
+    color: var(--accent-primary);
 }

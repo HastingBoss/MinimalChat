@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { Link, useSearchParams, useParams, useNavigate } from 'react-router'
 import { ContactsContext } from '../../Context/ContactsContext'
@@ -17,6 +17,17 @@ export default function LeftSideBar({ onClose, onOpenAi }) {
     const [isAddModalOpen, setIsAddModalOpen] = useState(false)
     const [newContactName, setNewContactName] = useState('')
     const [activeContactMenu, setActiveContactMenu] = useState(null)
+    const [isSettingsMenuOpen, setIsSettingsMenuOpen] = useState(false)
+    const [isDarkMode, setIsDarkMode] = useState(false)
+
+    useEffect(() => {
+        setIsDarkMode(document.body.classList.contains('dark-theme'))
+    }, [])
+
+    const toggleTheme = () => {
+        const isDark = document.body.classList.toggle('dark-theme')
+        setIsDarkMode(isDark)
+    }
 
     // Datos del usuario actual (quemados para el ejemplo)
     const currentUser = {
@@ -68,7 +79,7 @@ export default function LeftSideBar({ onClose, onOpenAi }) {
     }
 
     return (
-        <div className='sidebar' onClick={() => setActiveContactMenu(null)}>
+        <div className='sidebar' onClick={() => { setActiveContactMenu(null); setIsSettingsMenuOpen(false); }}>
 
             {isAddModalOpen && createPortal(
                 <div className="custom-modal-overlay">
@@ -205,11 +216,24 @@ export default function LeftSideBar({ onClose, onOpenAi }) {
                 </div>
             </div>
 
-            <div className='sidebar-footer' onClick={() => showNotification('Ajustes no disponibles', 'error')}>
-                <div className='footer-item'>
-                    <i className="bi bi-gear"></i>
+            <div className='sidebar-footer' style={{ display: 'flex', justifyContent: 'space-between', paddingRight: '20px', position: 'relative' }}>
+                <div className='footer-item' onClick={(e) => { e.stopPropagation(); setIsSettingsMenuOpen(!isSettingsMenuOpen); }}>
+                    <i className={`bi bi-gear ${isSettingsMenuOpen ? 'spin-icon' : ''}`}></i>
                     <span>Configuración</span>
                 </div>
+
+                {isSettingsMenuOpen && (
+                    <div className="settings-popup-menu" onClick={e => e.stopPropagation()}>
+                        <div className="menu-item" onClick={toggleTheme}>
+                            {isDarkMode ? <i className="bi bi-sun"></i> : <i className="bi bi-moon-stars"></i>}
+                            <span>Modo {isDarkMode ? 'Claro' : 'Oscuro'}</span>
+                        </div>
+                        <div className="menu-item" onClick={() => { showNotification('Ajustes en desarrollo', 'info'); setIsSettingsMenuOpen(false); }}>
+                            <i className="bi bi-sliders"></i>
+                            <span>Más opciones</span>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     )

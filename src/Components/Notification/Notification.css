@@ -10,8 +10,8 @@
 
 .notification {
     padding: 12px 20px;
-    background: #1e293b;
-    color: white;
+    background: var(--text-strong);
+    color: var(--bg-color);
     border-radius: 8px;
     font-size: 0.85rem;
     font-weight: 500;
@@ -28,7 +28,7 @@
 }
 
 .notification.info {
-    border-left: 4px solid #4f46e5;
+    border-left: 4px solid var(--accent-primary);
 }
 
 @keyframes slideIn {

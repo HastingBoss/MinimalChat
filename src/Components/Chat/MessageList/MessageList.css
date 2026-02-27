@@ -1,6 +1,6 @@
 .message-text strong {
     font-weight: 700;
-    color: #1e293b;
+    color: var(--text-strong);
 }
 
 .message-text em {
@@ -8,22 +8,22 @@
 }
 
 .message-text del {
-    color: #94a3b8;
+    color: var(--border-muted);
     text-decoration: line-through;
 }
 
 .message-text code {
-    background: #f1f5f9;
+    background: var(--hover-bg);
     padding: 2px 4px;
     border-radius: 4px;
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.9em;
     color: #e11d48;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border-color);
 }
 
 .message-text a {
-    color: #4f46e5;
+    color: var(--accent-primary);
     text-decoration: underline;
 }
 
@@ -44,24 +44,24 @@
 
 .preview-image {
     height: 120px;
-    background-color: #f1f5f9;
+    background-color: var(--hover-bg);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2rem;
-    color: #cbd5e1;
+    color: var(--border-strong);
 }
 
 .preview-details {
     padding: 12px;
-    background: white;
+    background: var(--sidebar-bg);
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
 .preview-type-icon {
-    color: #6366f1;
+    color: var(--accent-secondary);
     font-size: 1.2rem;
 }
 
@@ -77,12 +77,12 @@
 
 .preview-size {
     font-size: 0.7rem;
-    color: #64748b;
+    color: var(--text-muted);
     margin: 0;
 }
 
 .preview-download-icon {
-    color: #94a3b8;
+    color: var(--border-muted);
     cursor: pointer;
 }
 
@@ -115,13 +115,13 @@
     align-items: center;
     justify-content: center;
     padding: 60px 20px;
-    color: #64748b;
+    color: var(--text-muted);
     text-align: center;
 }
 
 .no-search-results i {
     font-size: 3.5rem;
-    color: #cbd5e1;
+    color: var(--border-strong);
     margin-bottom: 20px;
 }
 
@@ -132,16 +132,16 @@
 
 .clear-search-btn {
     padding: 10px 24px;
-    background: white;
-    border: 1px solid #e2e8f0;
+    background: var(--sidebar-bg);
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     font-weight: 600;
-    color: #4f46e5;
+    color: var(--accent-primary);
     cursor: pointer;
     transition: all 0.2s;
 }
 
 .clear-search-btn:hover {
-    background: #f8fafc;
-    border-color: #4f46e5;
+    background: var(--hover-bg-light);
+    border-color: var(--accent-primary);
 }
