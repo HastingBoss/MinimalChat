@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import './CallOverlay.css'
 
+/**
+ * Componente que muestra una interfaz de llamada saliente
+ * @param {Object} contact Contacto al que se llama
+ * @param {boolean} isActive Si la llamada está activa
+ * @param {function} onEndCall Función para finalizar la llamada
+ */
 export default function CallOverlay({ contact, isActive, onEndCall }) {
-    // ... (resto del código igual)
     const [duration, setDuration] = useState(0)
 
     useEffect(() => {
