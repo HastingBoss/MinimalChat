@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import { Link, useSearchParams, useParams, useNavigate } from 'react-router'
+import { Link, useSearchParams, useParams, useNavigate } from 'react-router-dom'
 import { ContactsContext } from '../../Context/ContactsContext'
 import { useNotification } from '../../Context/NotificationContext'
 import './LeftSideBar.css'

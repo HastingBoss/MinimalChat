@@ -1,6 +1,6 @@
 // Hooks y componentes necesarios
 import React from 'react'
-import { useParams, Outlet } from 'react-router'
+import { useParams, Outlet } from 'react-router-dom'
 import { useContext, useState, useEffect } from 'react'
 import { ContactsContext } from '../../Context/ContactsContext'
 import LeftSideBar from '../../Components/LeftSideBar/LeftSideBar'
@@ -9,7 +9,7 @@ import ChatHeader from '../../Components/Chat/ChatHeader/ChatHeader'
 import MessageList from '../../Components/Chat/MessageList/MessageList'
 import MessageInput from '../../Components/Chat/MessageInput/MessageInput'
 import RightSideBar from '../../Components/RightSideBar/RightSideBar'
-import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 import { useNotification } from '../../Context/NotificationContext'
 
 export default function ContactScreen() {

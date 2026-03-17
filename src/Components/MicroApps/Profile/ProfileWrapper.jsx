@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useParams, useNavigate } from 'react-router'
+import { useParams, useNavigate } from 'react-router-dom'
 import { ContactsContext } from '../../../Context/ContactsContext'
 import ProfileModal from './ProfileModal'
 

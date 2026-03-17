@@ -1,6 +1,6 @@
 // Importaciones de React y React Router
 import React from 'react'
-import { Route, Routes } from 'react-router'
+import { Route, Routes } from 'react-router-dom'
 // Importación de pantallas (Screens)
 import HomeScreen from './Screens/HomeScreen/HomeScreen'
 import ContactScreen from './Screens/ContactScreen/ContactScreen'

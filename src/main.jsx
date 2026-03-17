@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import './index.css' // Estilos globales
 import App from './App.jsx'
-import { BrowserRouter } from 'react-router'
+import { BrowserRouter } from 'react-router-dom'
 
 // Renderizado de la aplicación en el elemento root del DOM
 createRoot(document.getElementById('root')).render(
