@@ -1,4 +1,4 @@
-﻿# MinimalChat - Trabajo Práctico 2
+﻿# MinimalChat
 
 ## Descripción del Desafío
 MinimalChat es una aplicación de mensajería simplificada diseñada para cumplir con los requisitos del Trabajo Práctico de React. El desafío consistió en crear una interfaz de chat funcional, responsiva y accesible, permitiendo la comunicación simulada con diferentes contactos. Se puso especial énfasis en la gestión de estados globales, el enrutamiento dinámico y la adaptabilidad a dispositivos móviles.
